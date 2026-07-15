@@ -1,0 +1,2 @@
+# dotfiles
+Pengaturan lingkungan MAC
