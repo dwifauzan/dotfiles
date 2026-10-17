@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local palette = require("color")
+local claude = require("claude_accounts")
 local module = {}
 
 -- =============================================================================
@@ -37,6 +38,10 @@ function module.apply_to_config(_)
 		end
 		-- "#313244" は tab_simple.lua の非アクティブタブ背景色と揃えている
 		local divider_color = first_tab_active and palette.accent or "#313244"
+
+		-- 右側に Claude のアクティブアカウントを表示
+		-- (left status より先に設定: 古い WezTerm では left status の glyph が nil でエラーになるため)
+		window:set_right_status(wezterm.format(claude.status(window, pane)))
 
 		-- ワークスペース名の色を変更（全モード対応）
 		window:set_left_status(wezterm.format({
